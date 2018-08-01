@@ -1,14 +1,23 @@
-# Ubuntu 14.04，Trusty Tahr（可靠的塔尔羊）发行版
-FROM ubuntu:trusty
+# Ubuntu 16.04，16.04,Xenial Xerus (好客的非洲地松鼠),2016年4月 （LTS）
+FROM ubuntu:xenial
 
-# 道客船长荣誉出品
-MAINTAINER Captain Dao <support@daocloud.io>
+# 胡深
+MAINTAINER Mark Hu <markhskj@163.com>
 
 # APT 自动安装 Python 相关的依赖包，如需其他依赖包在此添加
-RUN apt-get update && \
-    apt-get install -y python \
-                       python-dev \
-                       python-pip  \
+RUN apt update && \
+    apt install -y python3 \
+                   python3-dev \
+                   python3-pip  \
+				   python3-numpy \
+	pip3 install tqdm \
+	apt-get install build-essential libssl-dev libffi-dev \
+    pip3 install ujson \
+	pip3 install -U spacy \
+	python3 -m spacy download en \
+	pip3 install -U nltk \
+	pip3 install jieba \
+					   
     # 用完包管理器后安排打扫卫生可以显著的减少镜像大小
     && apt-get clean \
     && apt-get autoclean \
